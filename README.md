@@ -6,6 +6,12 @@ in this repo,
 2. i experiment with ideas
 3. i experiment with DSA (born to use forloops, forced to learn how it works internally)
 
+to run this,
+
+1. get java17
+2. use that maven cmd
+3. figure the rest out 👍🏻
+
 # Branches
 
 1. using `main` branch to,
