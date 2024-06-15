@@ -19,6 +19,7 @@ to run this,
 
 # Journal (See timestamps through commits)
 
+- 6/15/2024 - "use dbeaver not h2 console"
 - creating an example of image service for the interns I have to take care of.
   - store images in DB as VARBINARY, or BLOB, or ByteArr
   - create endpoint to OutputStream the image.
