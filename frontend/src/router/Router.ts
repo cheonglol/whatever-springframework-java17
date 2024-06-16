@@ -2,14 +2,14 @@ import { RouteObject, createBrowserRouter } from "react-router-dom";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 
 import { ErrorView } from "../view/ErrorView";
-import App from "../view/LandingView";
 import ImageServicePlaygroundView from "../view/ImageServicePlaygroundView";
+import LandingView from "../view/LandingView";
 
-export const router = createBrowserRouter([
+export const myRouteObjects: RouteObject[] = [
     {
         path: "/",
-        Component: App,
-        ErrorBoundary: ErrorView
+        Component: LandingView,
+        ErrorBoundary: ErrorView,
     },
     {
         path: "/image-service-playground",
@@ -18,4 +18,6 @@ export const router = createBrowserRouter([
     ...ProtectedRoutes.map((route: RouteObject) => {
         return route;
     }),
-]);
+]
+
+export const router = createBrowserRouter(myRouteObjects);

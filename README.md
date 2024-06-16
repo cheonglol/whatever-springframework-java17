@@ -2,7 +2,7 @@
 
 in this repo,
 
-1. i experiment with designing a 'system' (if u could clal it one)
+1. i experiment with designing a 'system' (if u could call it one)
 2. i experiment with ideas
 3. i experiment with DSA (born to use forloops, forced to learn how it works internally)
 
@@ -19,6 +19,7 @@ to run this,
 
 # Journal (See timestamps through commits)
 
+- 6/16/2024 - 4:30am
 - 6/15/2024
   - "use dbeaver not h2 console"
   - run both applications at once using "dualStart.cmd"

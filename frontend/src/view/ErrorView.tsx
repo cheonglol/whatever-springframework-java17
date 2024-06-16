@@ -1,12 +1,12 @@
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { useRouteError } from "react-router-dom";
-import { BasicLayout } from "../layouts/BasicLayout";
+import { BaseLayout } from "../layouts/BaseLayout";
 
 export const ErrorView = () => {
   const routerError: any = useRouteError();
   console.log(routerError);
   return (
-    <BasicLayout
+    <BaseLayout
       mainContent={
         <div className="max-w-[80vw] mx-auto flex flex-col gap-6">
           <h1 className="text-6xl text-center">{routerError.status}</h1>

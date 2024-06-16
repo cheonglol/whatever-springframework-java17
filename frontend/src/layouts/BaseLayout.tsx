@@ -2,14 +2,10 @@ interface Props {
   headerContent?: any | undefined;
   mainContent: any;
   footerContent?: any;
-  includesBottomNav?: boolean;
+  useCard?: boolean;
 }
 
-export const BasicLayout = ({
-  headerContent,
-  mainContent,
-  footerContent,
-}: Props) => {
+export const BaseLayout = ({ headerContent, mainContent, footerContent, useCard = true }: Props) => {
   const header = (
     <>
       <header className="py-4">{headerContent ? headerContent : <></>}</header>
@@ -23,10 +19,16 @@ export const BasicLayout = ({
   );
 
   return (
-    <>
+    <div>
       {header}
-      <main className="py-8 px-[4vw] min-h-screen ">{mainContent}</main>
+      <main className={`min-h-screen py-12 px-[4vw]`}>
+        {useCard ? (
+          <div className="shadow-xl bg-slate-100 px-6 py-8 min-h-[66vh] font-medium">{mainContent}</div>
+        ) : (
+          mainContent
+        )}
+      </main>
       {footer}
-    </>
+    </div>
   );
 };
