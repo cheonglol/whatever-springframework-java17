@@ -9,11 +9,6 @@ in this repo,
 this repo,
 - comes with a little front-end
 
-# Branches
-
-1. using `main` branch to,
-   - update `README.md` to journal or whatever I'm going to commit at this point of time
-
 # Journal (See timestamps through commits)
 
 - creating an example of image service for the interns I have to take care of.
