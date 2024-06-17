@@ -71,4 +71,10 @@
     h6 {
         font-size: small;
     }
+
+    /* BASE STYLING ENDS */
+    /* CUSTOM STYLING START HERE */
+    hr {
+        margin: 1.5rem 0 2rem;
+    }
 }

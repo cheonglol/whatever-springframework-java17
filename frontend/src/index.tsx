@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "./global.css";
 // import reportWebVitals from './reportWebVitals';
 
 // ### PRIMEREACT CSS ###
@@ -9,7 +9,6 @@ import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/viva-light/theme.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router/Router";
-import LandingView from "./view/LandingView";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
