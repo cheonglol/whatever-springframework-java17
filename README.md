@@ -6,6 +6,9 @@ in this repo,
 2. i experiment with ideas
 3. i experiment with DSA (born to use forloops, forced to learn how it works internally)
 
+this repo,
+1. comes with a little front-end
+
 # Branches
 
 1. using `main` branch to,
