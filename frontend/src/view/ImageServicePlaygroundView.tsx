@@ -10,8 +10,7 @@ const ImageServicePlaygroundView = () => {
           <h1>ImageServicePlaygroundView</h1>
           <hr />
           <FileUpload
-            name="demo[]"
-            url={"/api/upload"}
+            url={"localhost:8080/images/upload"}
             multiple
             accept="image/*"
             maxFileSize={2000000}

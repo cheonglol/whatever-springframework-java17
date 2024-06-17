@@ -16,7 +16,8 @@
     <description>Demo project for Spring Boot to experiment with whatever I want. (ill try to design it with standards I learn - this is for my learning)</description>
     <properties>
         <java.version>17</java.version>
-        <h2.version>2.2.224</h2.version>
+        <h2.version>1.4.200</h2.version>
+        <commons-io.version>2.11.0</commons-io.version>
     </properties>
     <dependencies>
         <!-- Spring Boot Starter Data JPA -->
