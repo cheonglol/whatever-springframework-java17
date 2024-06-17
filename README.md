@@ -12,6 +12,6 @@ this repo,
 # Journal (See timestamps through commits)
 
 - creating an example of image service for the interns I have to take care of.
-  - store images in DB as VARBINARY, or BLOB, or ByteArr
+  - store images in `DB` as `VARBINARY`, or `BLOB`, or `ByteArr`
   - create endpoint to OutputStream the image.
   - add multithreading/queue/schedule or something. (i've no idea, this is my first time doing this too, my juniors are lucky.)
