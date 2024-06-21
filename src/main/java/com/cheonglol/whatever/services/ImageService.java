@@ -1,11 +1,5 @@
 package com.cheonglol.whatever.services;
 
-import org.springframework.stereotype.Service;
-
-// Image Service.
-// saves images as BLOB to database
-// allows retrieval of image and return as either blob or bytearr
-// along with other CRUD
 public interface ImageService {
 
     // Save an image as a BLOB

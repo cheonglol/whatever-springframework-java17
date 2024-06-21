@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 import com.cheonglol.whatever.models.Image;
 import com.cheonglol.whatever.repositories.ImageRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ImageServiceImpl implements ImageService {
 
     @Autowired
     ImageRepository imageRepository;
 
+    @Transactional
     public void saveAsBlob(byte[] imageData, String imageName) {
         try {
             Image image = new Image();
