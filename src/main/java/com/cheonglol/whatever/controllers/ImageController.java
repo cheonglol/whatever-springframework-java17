@@ -32,7 +32,7 @@ public class ImageController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadImages(@RequestParam("demo[]") List<MultipartFile> files) {
+    public ResponseEntity<String> uploadImages(List<MultipartFile> files) {
         try {
             for (MultipartFile file : files) {
                 String originalFilename = file.getOriginalFilename();
