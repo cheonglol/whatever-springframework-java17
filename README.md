@@ -19,9 +19,10 @@ to run this,
 
 # Journal (See timestamps through commits)
 
-- 6/16/2024 - 4:30am
+- 6/21/2024
+  - just stick with `@GeneratedValue(strategy=GenerationType.TABLE)` . i still don't know why the other options causes the embedded h2 to just fail on the second run (the first one just creates the table)
 - 6/15/2024
-  - "use dbeaver not h2 console"
+  - note to self - "use dbeaver not h2 console"
   - run both applications at once using "dualStart.cmd"
 - creating an example of image service for the interns I have to take care of.
   - store images in DB as VARBINARY, or BLOB, or ByteArr
