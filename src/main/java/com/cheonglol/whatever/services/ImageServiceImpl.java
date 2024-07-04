@@ -10,6 +10,39 @@ import com.cheonglol.whatever.repositories.ImageRepository;
 
 import java.io.ByteArrayOutputStream; // TODO: Use this shit
 
+/*
+ * EXAMPLE CODE
+
+import org.hibernate.annotations.QueryAnnotation;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.io.ByteArrayOutputStream;
+import java.util.List;
+
+public class ImageServiceImpl implements ImageService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Override
+    public byte[] retrieveImageAsStream(String imageName) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        Query query = entityManager.createNativeQuery("SELECT imageData FROM IMAGES WHERE imageName = :imageName");
+        query.setParameter("imageName", imageName);
+
+        List<Object[]> results = query.getResultList();
+        for (Object[] result : results) {
+            byte[] imageData = (byte[]) result[0];
+            outputStream.write(imageData);
+        }
+
+        return outputStream.toByteArray();
+    }
+}
+
+ */
+
 @Service
 public class ImageServiceImpl implements ImageService {
 
