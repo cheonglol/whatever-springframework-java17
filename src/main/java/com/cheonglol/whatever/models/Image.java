@@ -20,6 +20,8 @@ public class Image {
     @Lob
     private byte[] imageData;
 
+    private String mimeType;
+
     // Constructors, getters, and setters
 
     public Image() {

@@ -1,13 +1,14 @@
 package com.cheonglol.whatever.services;
 
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Service;
+import jakarta.transaction.Transactional;
 
 import com.cheonglol.whatever.models.Image;
 import com.cheonglol.whatever.repositories.ImageRepository;
 
-import jakarta.transaction.Transactional;
+import java.io.ByteArrayOutputStream; // TODO: Use this shit
 
 @Service
 public class ImageServiceImpl implements ImageService {
@@ -28,7 +29,8 @@ public class ImageServiceImpl implements ImageService {
         }
     }
 
-    public byte[] retrieveAsByteArray(String imageName) {
+    @Override
+    public byte[] retrieveAsBlob(String imageName) {
         try {
             Image image = imageRepository.findByImageName(imageName);
             if (image == null) {
@@ -40,11 +42,6 @@ public class ImageServiceImpl implements ImageService {
             System.err.println("Error retrieving image: " + e.getMessage());
             return null;
         }
-    }
-
-    @Override
-    public byte[] retrieveAsBlob(String imageName) {
-        return retrieveAsByteArray(imageName);
     }
 
     @Override
