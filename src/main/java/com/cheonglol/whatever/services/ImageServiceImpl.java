@@ -8,7 +8,7 @@ import jakarta.transaction.Transactional;
 import com.cheonglol.whatever.models.Image;
 import com.cheonglol.whatever.repositories.ImageRepository;
 
-import java.io.ByteArrayOutputStream; // TODO: Use this shit
+import java.io.ByteArrayOutputStream;
 
 /*
  * EXAMPLE CODE
@@ -62,16 +62,29 @@ public class ImageServiceImpl implements ImageService {
         }
     }
 
+    // @Override
+    // public byte[] retrieveAsBlob(String imageName) {
+    // try {
+    // Image image = imageRepository.findByImageName(imageName);
+    // if (image == null) {
+    // throw new IllegalArgumentException("Image not found");
+    // }
+    // return image.getImageData();
+    // } catch (IllegalArgumentException | NullPointerException e) {
+    // // Handle case where image is not found or other unexpected issues
+    // System.err.println("Error retrieving image: " + e.getMessage());
+    // return null;
+    // }
+    // }
+
     @Override
-    public byte[] retrieveAsBlob(String imageName) {
+    public byte[] retrieveImage(String imageName) {
         try {
             Image image = imageRepository.findByImageName(imageName);
-            if (image == null) {
+            if (image == null)
                 throw new IllegalArgumentException("Image not found");
-            }
             return image.getImageData();
-        } catch (IllegalArgumentException | NullPointerException e) {
-            // Handle case where image is not found or other unexpected issues
+        } catch (IllegalArgumentException | NullPointerException | DataAccessException e) {
             System.err.println("Error retrieving image: " + e.getMessage());
             return null;
         }
@@ -81,12 +94,11 @@ public class ImageServiceImpl implements ImageService {
     public void updateImage(byte[] imageData, String imageName) {
         try {
             Image image = imageRepository.findByImageName(imageName);
-            if (image != null) {
-                image.setImageData(imageData);
-                imageRepository.save(image);
-            } else {
+            if (image == null)
                 throw new IllegalArgumentException("Image not found");
-            }
+            image.setImageData(imageData); // Ensure setImageData is public in the Image class
+            imageRepository.save(image); // Correctly passing an Image object
+
         } catch (IllegalArgumentException | NullPointerException | DataAccessException e) {
             // Handle exceptions
             System.err.println("Error updating image: " + e.getMessage());

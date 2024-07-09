@@ -1,15 +1,12 @@
 package com.cheonglol.whatever.controllers;
 
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cheonglol.whatever.services.ImageService;
 import com.cheonglol.whatever.utils.AppLogger;
+import com.cheonglol.whatever.utils.Helper;
 
 @RestController
 @RequestMapping("/images")
@@ -36,7 +34,7 @@ public class ImageController {
             String base64ImageString = (String) requestBody.get("image");
             byte[] decodedBytes = Base64.getDecoder().decode(base64ImageString);
 
-            String sanitizedFilename = sanitizeFilename(requestBody.get("filename").toString());
+            String sanitizedFilename = Helper.sanitizeFilename(requestBody.get("filename").toString());
             imageService.saveAsBlob(decodedBytes, sanitizedFilename);
 
             return new ResponseEntity<>("Image uploaded successfully", HttpStatus.OK);
@@ -45,13 +43,14 @@ public class ImageController {
         }
     }
 
-    @GetMapping("/retrieve/{filename}")
-    public ResponseEntity<byte[]> retrieveImage(@PathVariable String filename) {
-        if (filename.equals("")) {
+    @GetMapping("/retrieve")
+    public ResponseEntity<byte[]> retrieveImage(@RequestParam String filename) {
+        if (filename.isEmpty())
             throw new IllegalArgumentException("RequestParam is an empty string");
-        }
         try {
-            byte[] imageData = imageService.retrieveAsBlob(filename);
+            // byte[] imageData = imageService.retrieveAsBlob(filename);
+            byte[] imageData = imageService.retrieveImage(filename);
+            System.out.println(imageData.toString());
             return new ResponseEntity<byte[]>(imageData, HttpStatus.OK);
         } catch (Exception e) {
             AppLogger.getLogger().error(String.format(e.getMessage()));
@@ -60,8 +59,4 @@ public class ImageController {
         }
     }
 
-    private String sanitizeFilename(String filename) {
-        // Implement your filename sanitization logic here
-        return filename.replaceAll("[^a-zA-Z0-9\\.\\-_]", "_");
-    }
 }
