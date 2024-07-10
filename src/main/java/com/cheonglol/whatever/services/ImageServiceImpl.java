@@ -52,10 +52,7 @@ public class ImageServiceImpl implements ImageService {
     @Transactional
     public void saveAsBlob(byte[] imageData, String imageName) {
         try {
-            Image image = new Image();
-            image.setImageName(imageName);
-            image.setImageData(imageData);
-            imageRepository.save(image);
+            imageRepository.save(new Image(imageName, imageData));
         } catch (DataAccessException e) {
             // Log the exception or handle it appropriately
             System.err.println("Error saving image: " + e.getMessage());
