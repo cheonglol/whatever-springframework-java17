@@ -1,5 +1,7 @@
 package com.cheonglol.whatever.models;
 
+import com.cheonglol.whatever.utils.Helper;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,13 +25,13 @@ public class Image {
     private String mimeType;
 
     // Constructors, getters, and setters
-
     public Image() {
     }
 
     public Image(String imageName, byte[] imageData) {
         this.imageName = imageName;
         this.imageData = imageData;
+        this.mimeType = Helper.getFuckingFilenameExtention(imageName);
     }
 
     public Long getId() {
@@ -54,5 +56,13 @@ public class Image {
 
     public void setImageData(byte[] imageData) {
         this.imageData = imageData;
+    }
+
+    public void setMimeType(String newValue) {
+        this.mimeType = newValue;
+    }
+
+    public String getMimeType() {
+        return mimeType;
     }
 }
