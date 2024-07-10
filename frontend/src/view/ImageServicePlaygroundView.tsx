@@ -5,6 +5,7 @@ import { uploadImage } from "../api/ImageServiceUpload_API";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import RetrieveImagePreview from "../components/ImageServicePlayground/RetrieveImagePreview";
+import { toast } from "react-toastify";
 
 // TEMPORARY CONST - TODO: MOVE THIS SHIT INTO ENV OR SOMETHING
 
@@ -44,6 +45,7 @@ const ImageServicePlaygroundView = () => {
   const handleRetrievalSample = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.value.includes(".")) return;
     if (e.target.value.split(".")[1].length <= 2) return;
+    toast("🔍 attempting to fetch image...");
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setRetrieveFilename(`${serviceProviderAddr}${retrievalPath(e.target.value)}`);
