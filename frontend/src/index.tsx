@@ -3,12 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./global.css";
 // import reportWebVitals from './reportWebVitals';
 
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/Router";
+
 // ### PRIMEREACT CSS ###
 import "primeicons/primeicons.css";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/viva-light/theme.css";
-import { RouterProvider } from "react-router-dom";
-import { router } from "./router/Router";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -23,6 +27,7 @@ const MasterProvider = ({ children }: Props) => {
       {/* <ReduxStoreProvider store={store}> */}
       <RouterProvider router={router} />
       <PrimeReactProvider>{children}</PrimeReactProvider>
+      <ToastContainer />
       {/* </ReduxStoreProvider> */}
     </>
   );
