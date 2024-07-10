@@ -10,7 +10,8 @@ this repo,
 
 - comes with a little front-end
 
-# Journal (See timestamps through commits)
+# Journal 
+_(See timestamps through commits)_
 
 - 6/21/2024
   - just stick with `@GeneratedValue(strategy=GenerationType.TABLE)` . i still don't know why the other options causes the embedded h2 to just fail on the second run (the first one just creates the table)
