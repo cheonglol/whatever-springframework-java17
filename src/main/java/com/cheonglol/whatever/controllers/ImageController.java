@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cheonglol.whatever.logging.AppLogger;
+import com.cheonglol.whatever.models.Response.GenericResponseShape;
 import com.cheonglol.whatever.services.ImageService;
-import com.cheonglol.whatever.utils.AppLogger;
 import com.cheonglol.whatever.utils.Helper;
 
 @RestController
@@ -29,7 +30,7 @@ public class ImageController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadImages(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<GenericResponseShape> uploadImages(@RequestBody Map<String, Object> requestBody) {
         try {
             String base64ImageString = (String) requestBody.get("image");
             byte[] decodedBytes = Base64.getDecoder().decode(base64ImageString);
@@ -37,9 +38,13 @@ public class ImageController {
             String sanitizedFilename = Helper.sanitizeFilename(requestBody.get("filename").toString());
             imageService.saveAsBlob(decodedBytes, sanitizedFilename);
 
-            return new ResponseEntity<>("Image uploaded successfully", HttpStatus.OK);
+            return new ResponseEntity<GenericResponseShape>(
+                    new GenericResponseShape(true, null, String.format("`%s` has been uploaded.", sanitizedFilename)),
+                    HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<GenericResponseShape>(new GenericResponseShape(false, null,
+                    "The server has received the upload request, but failed to upload into the database."),
+                    HttpStatus.BAD_REQUEST);
         }
     }
 
