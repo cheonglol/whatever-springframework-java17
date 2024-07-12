@@ -2,9 +2,9 @@
 
 in this repo,
 
-1. i experiment with designing a 'system' (if u could call it one)
+1. i experiment with designing a 'system' (if u would call this shit one)
 2. i experiment with ideas
-3. i experiment with DSA (born to use forloops, forced to learn how it works internally)
+3. i maybe experiment with DSA (born to use forloops, forced to learn how it works internally)
 
 this repo,
 
