@@ -10,6 +10,7 @@ import LandingView from "../view/LandingView";
 const MLandingView = memo(LandingView);
 const MImageServicePlaygroundView = memo(ImageServicePlaygroundView);
 
+// TODO: fix how memo is done
 
 export const myRouteObjects: RouteObject[] = [
     {
@@ -21,9 +22,14 @@ export const myRouteObjects: RouteObject[] = [
         path: "/image-service-playground",
         Component: MImageServicePlaygroundView
     },
+    {
+        path: "/network-protocols-playground",
+        Component: MLandingView
+    },
     ...ProtectedRoutes.map((route: RouteObject) => {
         return route;
     }),
+
 ]
 
 export const router = createBrowserRouter(myRouteObjects);
