@@ -1,7 +1,5 @@
 package com.cheonglol.whatever.models.Response;
 
-import java.util.HashMap;
-
 public class GenericResponseShape {
 
     private boolean success;
