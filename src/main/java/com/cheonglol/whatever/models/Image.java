@@ -1,5 +1,7 @@
 package com.cheonglol.whatever.models;
 
+import java.util.UUID;
+
 import com.cheonglol.whatever.utils.Helper;
 
 import jakarta.persistence.Entity;
@@ -24,6 +26,8 @@ public class Image {
 
     private String mimeType;
 
+    private UUID uniqueIdentifier;
+
     // Constructors, getters, and setters
     public Image() {
     }
@@ -32,6 +36,7 @@ public class Image {
         this.imageName = imageName;
         this.imageData = imageData;
         this.mimeType = Helper.getFuckingFilenameExtention(imageName);
+        this.uniqueIdentifier = UUID.randomUUID();
     }
 
     public Long getId() {
@@ -64,5 +69,13 @@ public class Image {
 
     public String getMimeType() {
         return mimeType;
+    }
+
+    public void setUniqueIdentifier(UUID uniqueIdentifier) {
+        this.uniqueIdentifier = uniqueIdentifier;
+    }
+
+    public UUID getUniqueIdentifier() {
+        return uniqueIdentifier;
     }
 }

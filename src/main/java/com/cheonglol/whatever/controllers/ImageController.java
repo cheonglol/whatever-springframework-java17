@@ -2,6 +2,7 @@ package com.cheonglol.whatever.controllers;
 
 import java.util.Base64;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cheonglol.whatever.logging.AppLogger;
-import com.cheonglol.whatever.models.Response.GenericResponseShape;
+import com.cheonglol.whatever.models.ResponseDTO;
 import com.cheonglol.whatever.services.ImageService;
 import com.cheonglol.whatever.utils.Helper;
 
@@ -30,7 +31,7 @@ public class ImageController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<GenericResponseShape> uploadImages(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<ResponseDTO> uploadImages(@RequestBody Map<String, Object> requestBody) {
         try {
             String base64ImageString = (String) requestBody.get("image");
             byte[] decodedBytes = Base64.getDecoder().decode(base64ImageString);
@@ -38,23 +39,20 @@ public class ImageController {
             String sanitizedFilename = Helper.sanitizeFilename(requestBody.get("filename").toString());
             imageService.saveAsBlob(decodedBytes, sanitizedFilename);
 
-            return new ResponseEntity<GenericResponseShape>(
-                    new GenericResponseShape(true, null, String.format("`%s` has been uploaded.", sanitizedFilename)),
+            return new ResponseEntity<ResponseDTO>(new ResponseDTO(true, null, sanitizedFilename + " uploaded"),
                     HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<GenericResponseShape>(new GenericResponseShape(false, null,
+            return new ResponseEntity<ResponseDTO>(new ResponseDTO(false, null,
                     "The server has received the upload request, but failed to upload into the database."),
                     HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/retrieve")
-    public ResponseEntity<byte[]> retrieveImage(@RequestParam String filename) {
-        if (filename.isEmpty())
-            throw new IllegalArgumentException("RequestParam is an empty string");
+    public ResponseEntity<byte[]> retrieveImage(@RequestParam String uniqueIdentifier) {
         try {
             // byte[] imageData = imageService.retrieveAsBlob(filename);
-            byte[] imageData = imageService.retrieveImage(filename);
+            byte[] imageData = imageService.retrieveImage(UUID.fromString(uniqueIdentifier));
             System.out.println(imageData.toString());
             return new ResponseEntity<byte[]>(imageData, HttpStatus.OK);
         } catch (Exception e) {

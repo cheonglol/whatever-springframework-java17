@@ -1,22 +1,15 @@
-package com.cheonglol.whatever.models.Response;
+package com.cheonglol.whatever.models;
 
-public class GenericResponseShape {
+public class ResponseDTO {
 
     private boolean success;
     private Object data;
     private String message;
 
-    public GenericResponseShape(boolean isSuccessful, Object data, String message) {
-
+    public ResponseDTO(boolean isSuccessful, Object data, String message) {
         this.success = isSuccessful;
         this.data = data;
-
-        if (message.equals(null) || message.isEmpty()) {
-            this.message = "";
-        } else {
-            this.message = message;
-        }
-
+        this.message = message;
     }
 
     // GET SET SHIT
@@ -43,13 +36,4 @@ public class GenericResponseShape {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    // MAGIC SHIT
-    // public HashMap<String, Object> buildResponseHashMap() {
-    // return new HashMap<String, Object>() {{
-    // put("success", );
-    // put(message, data);
-    // put(message, data);
-    // }};
-    // }
 }
