@@ -1,5 +1,7 @@
 package com.cheonglol.whatever.services;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -26,9 +28,9 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public byte[] retrieveImage(String imageName) {
+    public byte[] retrieveImage(UUID uniqueIdentifier) {
         try {
-            Image image = imageRepository.findByImageName(imageName);
+            Image image = imageRepository.findByUniqueIdentifier(uniqueIdentifier);
             if (image == null)
                 throw new IllegalArgumentException("Image not found");
             return image.getImageData();
